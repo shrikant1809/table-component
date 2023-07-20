@@ -1,0 +1,57 @@
+<div class="table-container">
+  <div class="search-bar">
+    <!-- Remove the <input> tag on line 3 -->
+    <div class="search">
+      <input
+        type="text"
+        (input)="onSearchChange($event.target.value)"
+        placeholder="Search..."
+      />
+    </div>
+
+    <button (click)="toggleSelectAll()">Select All</button>
+    <button (click)="deleteSelectedRows()">Delete Selected</button>
+  </div>
+
+  <table>
+    <tr>
+      <th>
+        <input
+          type="checkbox"
+          [checked]="selectedRows.size === displayedUsers.length"
+          (click)="toggleSelectAll()"
+        />
+      </th>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Role</th>
+    </tr>
+    <tr
+      *ngFor="let user of displayedUsers"
+      [class.selected]="isRowSelected(user.id)"
+    >
+      <td>
+        <input
+          type="checkbox"
+          [checked]="isRowSelected(user.id)"
+          (click)="toggleSelectRow(user.id)"
+        />
+      </td>
+      <td>{{ user.id }}</td>
+      <td>{{ user.name }}</td>
+      <td>{{ user.email }}</td>
+      <td>{{ user.role }}</td>
+    </tr>
+  </table>
+
+  <div class="pagination">
+    <button
+      *ngFor="let page of getPaginationArray()"
+      [class.active]="currentPage === page"
+      (click)="onPageChange(page)"
+    >
+      {{ page }}
+    </button>
+  </div>
+</div>
