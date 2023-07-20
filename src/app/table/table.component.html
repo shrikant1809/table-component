@@ -2,11 +2,7 @@
   <div class="search-bar">
     <!-- Remove the <input> tag on line 3 -->
     <div class="search">
-      <input
-        type="text"
-        (input)="onSearchChange($event.target.value)"
-        placeholder="Search..."
-      />
+      <input (input)="onSearchChange($event)" />
     </div>
 
     <button (click)="toggleSelectAll()">Select All</button>

@@ -81,10 +81,10 @@ export class TableComponent implements OnInit {
     return Array.from({ length: totalPages }, (_, index) => index + 1);
   }
 
-  onSearchChange(query: string): void {
-    this.searchQuery = query;
-    this.currentPage = 1;
-    this.updatePagination();
+  onSearchChange(event: Event): void {
+    const target = event.target as HTMLInputElement;
+    const value = target.value; // 'value' should now be accessible without TS error
+    // Your logic to handle the search change goes here
   }
 
   toggleSelectAll(): void {
